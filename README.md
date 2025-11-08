@@ -53,6 +53,7 @@
 在實際使用時，你可以將此系統應用於任何以方向鍵控制的遊戲，例如 Poki 網站上的 Subway Surfers 或 Hill Climb Racing Lite，甚至也可以下載本機遊戲（如 Hill Climb Racing）進行體驗。
 
 簡單來說，這是一個能讓你「揮揮手就能玩遊戲」的 MATLAB 小專案 — 讓你同時感受到 AI、影像處理與互動科技的結合 🚀
+
 ---
 
 ## 💾 下載教學
