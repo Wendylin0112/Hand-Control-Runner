@@ -6,31 +6,47 @@
 
 ---
 
-## ✨ 功能亮點
-
-- 即時相機畫面 + 21 點手部關節疊圖  
-- Mediapipe Hands（Python）整合 MATLAB  
-- 手勢 → 鍵盤方向鍵控制（可用於任何支援方向鍵的遊戲）  
-- 低延遲優化：縮圖推論、GUI 限速刷新、穩定視覺化  
-- 可切換自拍鏡像、自動判別左右手、手勢門檻可調
+## 📖 目錄
+1. [專案介紹](#-專案介紹)
+2. [下載教學](#-下載教學)
+   - [專案結構](#-專案結構)
+   - [MATLAB 與環境需求](#-matlab-與環境需求)
+   - [Python Mediapipe 環境設定](#-python-mediapipe-環境設定)
+   - [常見問題](#-常見問題)
+3. [開始遊玩](#-開始遊玩)
+   - [測試是否正常運作](#-測試是否正常運作)
+   - [推薦的遊戲](#-推薦的遊戲)
+4. [程式碼介紹與說明](#-程式碼介紹與說明)
+   - [參考來源](#-參考來源)
+   - [程式架構說明](#-程式架構說明)
+   - [主要參數設定](#-主要參數設定)
+5. [授權與聲明](#-授權與聲明)
 
 ---
 
-## 🗂 專案結構
+## 💡 專案介紹
+
+本專案讓使用者能夠：
+- 即時偵測手部關節
+- 將手勢轉換為自己電腦的方向鍵訊號
+- 用手勢操作任何只需要「方向鍵」的遊戲（例如 Poki 網頁遊戲、Microsoft Store 小遊戲）
+- 體驗影像處理與人機互動的樂趣！
+
+---
+
+## 💾 下載教學
+
+### 📁 專案結構
 
 ```
 project/
 ├─ main.m                     % 主程式
-├─ +controlkeys/              % 鍵盤輸出模組（方向鍵模擬）
-│   └─ controlkeys.m / *.m
 └─ README.md
 ```
 
----
+### ⚙ MATLAB 與環境需求
 
-## ✅ 系統需求
-
-- **MATLAB**：R2022b 或以上（建議 R2023b/R2024a+）  
+- **MATLAB**：R2022b 或以上（建議 R2023b/R2024a）  
 - **Toolboxes / Support Packages**
   - Image Processing Toolbox（`insertShape`, `imresize`, `imshow`）
   - *MATLAB Support Package for USB Webcams*（相機驅動）
@@ -38,9 +54,7 @@ project/
 - **作業系統**：Windows / macOS（Windows 測試最完整）
 - **相機**：USB/內建鏡頭
 
----
-
-## 🐍 Python 環境設定（Mediapipe）
+### 🐍 Python Mediapipe 環境設定
 
 1️⃣ 在 MATLAB 指令列輸入：
 ```matlab
@@ -55,107 +69,110 @@ pyenv
 ```
 
 > 📌 必須安裝到 MATLAB 正在使用的 Python！  
-> 若不確定，請執行 `pyenv` 再確認。
+> 若不確定，請執行 `pyenv` 再確認。  
 
----
+### ❓ 常見問題
 
-## 🕹 使用方式
-
-1. 開啟 MATLAB，允許相機權限。  
-2. 執行：
-   ```matlab
-   main
-   ```
-3. 手勢對應：
-   - **1 指**：UP  
-   - **≤1 指**：DOWN  
-   - **張手（4–5 指）**：  
-     - 右手 → RIGHT  
-     - 左手 → LEFT
-4. `Q` 離開程式。
-
----
-
-## 🎮 遊戲推薦與玩法
-
-這個專案會將偵測到的手勢直接轉換為方向鍵輸出，因此你可以玩任何「只需要使用方向鍵操作」的遊戲！  
-我推薦以下網站與遊戲給大家體驗：
-
-| 平台 | 推薦遊戲 | 連結 |
-|------|-----------|------|
-| 🌐 **Poki 網站** | Subway Surfers | https://poki.com/en/g/subway-surfers |
-| 🌐 **Poki 網站** | Hill Climb Racing Lite | https://poki.com/zh/g/hill-climb-racing-lite |
-
-> 這兩款遊戲都能在瀏覽器中直接遊玩，使用方向鍵即可操作角色。  
-> 你也可以上 [https://poki.com](https://poki.com) 找任何其他有趣、以方向鍵操作的遊戲進行測試。  
-
-如果希望有更流暢的遊戲體驗，也可以前往 **Microsoft Store** 搜尋並下載遊戲版本（我自己是下載 *Hill Climb Racing* 來測試的喔！）。
-
----
-
-## ⚙ 可調參數（main.m）
-
-- `USE_PY_MEDIAPIPE = true`：開啟/關閉 Python Mediapipe。  
-- 相機解析度：`cam.Resolution = '640x480';` 提升 FPS。  
-- Mediapipe 參數：
-  - `max_num_hands`（預設 1，可改 2）
-  - `model_complexity`（0 最快）
-- 手勢門檻與判定區間（可微調靈敏度）。  
-- 鏡像選項：`SELFIE_FLIP`、`SWAP_LR`（左右反轉修正）。
-
----
-
-## 🧪 快速測試清單
-
-- 執行 `py.importlib.import_module('mediapipe')` 無錯誤。  
-- 執行 `main`，看到相機畫面與 21 個青色點。  
-- 揮手或張手 → 螢幕右下方白框中會顯示目前偵測到的方向（UP/LEFT/RIGHT/DOWN）。  
-- 開啟 Poki 遊戲頁面，試著用手勢操控角色。  
-
----
-
-## ⚠️ 常見問題
-
-**Q1. 出現 `ModuleNotFoundError: No module named 'mediapipe'`**  
-→ 你可能安裝到不同的 Python。請重新確認 `pyenv` 顯示的 Python 路徑再安裝。
+**Q1. `ModuleNotFoundError: No module named 'mediapipe'`**  
+→ 請確認你把套件安裝到 MATLAB 正在使用的 Python。
 
 **Q2. 相機畫面卡住或 FPS 過低**  
-→ 降低解析度、設定 `model_complexity=0`、確保環境光充足。
+→ 降低解析度、設定 `model_complexity=0`、保持良好照明。
 
-**Q3. 手勢偵測靈敏度太高或太低**  
-→ 調整 `deltaY`、`deltaX_strict` 或手勢對應區間。
+**Q3. 手勢偵測靈敏度太高/太低**  
+→ 調整 `deltaY`, `deltaX_strict` 或手勢門檻。
 
 **Q4. 左右顛倒**  
 → 設定 `SELFIE_FLIP = true` 或 `SWAP_LR = true`。
 
 **Q5. 關閉攝影機**  
-→ 關閉程式視窗或執行：  
+→ 關閉視窗或輸入：  
 ```matlab
 clear cam; close all;
 ```
 
 ---
 
-## 📚 參考資料
+## 🎮 開始遊玩
 
-本專案手勢邏輯與程式設計概念部分參考自：  
-**GestureKeyboardController** by Ojas Mittal  
-🔗 https://github.com/OjasMittal/GestureKeyboardController
+### 🧪 測試是否正常運作
 
-感謝原作者的開源分享與啟發 🙏
+1. 開啟 MATLAB，允許相機權限。  
+2. 執行：
+   ```matlab
+   main
+   ```
+3. 若看到相機畫面與 21 個青色關節點，表示已成功啟動 Mediapipe。  
+4. 對鏡頭做以下動作進行測試，螢幕框中應顯示目前偵測到的方向。：右手打開（顯示RIGH）、左手打開（顯示LEFT）、伸出食指比1（顯示UP）、握拳（顯示DOWN）
+5. 同時開啟任何使用方向鍵的遊戲進行測試。  
+
+### 🎮 推薦的遊戲
+
+因為專案會輸出方向鍵訊號，你可以玩任何用方向鍵控制的遊戲。  
+這裡推薦幾個好玩又容易上手的 Poki 網頁遊戲👇
+
+| 平台 | 遊戲名稱 | 連結 |
+|------|-----------|------|
+| 🌐 **Poki 網站** | Subway Surfers | https://poki.com/en/g/subway-surfers |
+| 🌐 **Poki 網站** | Hill Climb Racing Lite | https://poki.com/zh/g/hill-climb-racing-lite |
+
+> 這兩款遊戲都能在瀏覽器中直接玩、使用方向鍵操作角色。  
+> 你也可以上 [https://poki.com](https://poki.com) 找其他有趣的遊戲來測試。  
+
+如果希望有更順暢的體驗，也可以前往 **Microsoft Store** 搜尋並下載遊戲版本。  
+> 我自己是下載 *Hill Climb Racing* 來測試的喔 🚗💨
 
 ---
 
-## 📝 授權與聲明
+## 🧠 程式碼介紹與說明
 
-- 僅供學術、教學與個人研究使用。  
-- 請勿用於商業應用或未經授權的隱私蒐集。  
-- 若您分享本專案或修改版本，請保留原作者與參考來源說明。
+### 📚 參考來源
+本專案的手勢邏輯與程式設計概念部分參考自：  
+**GestureKeyboardController** by Ojas Mittal  
+🔗 https://github.com/OjasMittal/GestureKeyboardController  
+
+感謝原作者的開源分享與啟發 🙏
+
+### 🧩 程式架構說明
+
+主要程式 `main.m` 負責：
+1. 初始化相機、Mediapipe Python 環境  
+2. 即時擷取影像 → 傳給 Mediapipe  
+3. 解析 landmarks → 判斷手勢  
+4. 轉換為方向鍵控制（透過 `controlkeys` 模組）  
+5. 即時在 MATLAB 圖窗上顯示畫面與偵測結果  
+
+手勢判斷邏輯（簡化版本）：
+- 伸出 1 指 → UP  
+- 沒有伸出手指 → DOWN  
+- 張開手（4–5 指）→  
+  - 右手 → RIGHT  
+  - 左手 → LEFT
+
+### ⚙ 主要參數設定
+
+| 參數名稱 | 說明 | 預設值 |
+|-----------|------|---------|
+| `USE_PY_MEDIAPIPE` | 是否啟用 Python Mediapipe | `true` |
+| `cam.Resolution` | 攝影機解析度 | `'640x480'` |
+| `max_num_hands` | 偵測手數量 | `1` |
+| `model_complexity` | 模型複雜度（0 最快） | `0` |
+| `SELFIE_FLIP` | 是否鏡像反轉畫面 | `true` |
+| `SWAP_LR` | 左右手顛倒修正 | `false` |
+| `DOWNSCALE` | 影像縮放比例（加速推論） | `0.6` |
+| `targetFPS` | GUI 更新幀率 | `30` |
+
+---
+
+## ⚖ 授權與聲明
+
+- 本專案僅供學術、教學與個人研究用途。
 
 ---
 
 ## 🎉 一起玩影像處理吧！
 
-歡迎大家下載體驗、二創擴充、甚至把它帶到你的課堂或社群活動中～  
-如果你玩得開心或做了更酷的延伸版本，也歡迎在 GitHub 上分享！  
+歡迎大家下載體驗、二創擴充、甚至把它帶到你的課堂或社群活動中～
+如果你玩得開心或做了更酷的延伸版本，也歡迎在 GitHub 上分享！
+
 Have fun, and enjoy coding with MATLAB + Mediapipe 👋
