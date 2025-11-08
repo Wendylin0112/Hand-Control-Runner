@@ -151,9 +151,7 @@ clear cam; close all;
 ## 🎥 Demo
 以下為本專案的實際操作與遊玩示範影片：
 
-<video src="Demo game.mp4" width="720" controls>
-  若您的瀏覽器不支援影片播放，請下載影片觀看。
-</video>
+🎬 [點此觀看 Demo 影片](Demo%20game.mp4)
 
 ---
 
