@@ -64,6 +64,8 @@
 ```
 project/
 ├─ main.m                     % 主程式
+├─ controlkeys.m              % 鍵盤輸出模組（方向鍵模擬）
+│
 └─ README.md
 ```
 
