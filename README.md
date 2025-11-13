@@ -153,6 +153,7 @@ clear cam; close all;
 本專案的手勢邏輯與程式設計概念部分參考自：  
 **GestureKeyboardController** by Ojas Mittal  
 🔗 https://github.com/OjasMittal/GestureKeyboardController  
+🎬 [Use Hand Gestures to Control Games like Subway Surfers, Hill Climb Racing](https://youtu.be/iODL_Xb4IS4?si=rS03jL48URAFNs3F)
 
 感謝原作者的開源分享與啟發 🙏
 
