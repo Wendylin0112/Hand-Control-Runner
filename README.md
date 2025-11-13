@@ -140,11 +140,10 @@ clear cam; close all;
 
 ---
 
-## 🎥 Demo（暫時無法）
+## 🎥 Demo
 以下為本專案的實際操作與遊玩示範影片：
 
-抱歉由於一些技術上的問題目前無法將放影片上來
-🎬 [點此觀看 Demo 影片][(Demo%20game.mp4)](https://youtu.be/FydK0xX9bpE)
+🎬 [點此觀看 Demo 影片](https://youtu.be/FydK0xX9bpE)
 
 ---
 
